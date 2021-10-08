@@ -23,3 +23,10 @@ Note there is currently no solution to change all of them simultaneously
 Stick this function in a for loop for the range of slider_index arguments
 to make this work
 }
+<<<<<<< HEAD
+=======
+\examples{
+bootstrap_slider_colour()
+bootstrap_slider_colour(colour='blue')
+}
+>>>>>>> f1215f266c5877fc5419fb7f3880749e348db475
