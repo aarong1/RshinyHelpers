@@ -54,3 +54,21 @@ DT_selected_row_colour <- function( colour='pink') {
 
 }
 
+
+chk_nas <- function(x){
+  #takes atomic vectors
+  y <- x%>%
+    is.na()%>%
+    which()
+  return(y)
+  #returns indices of nas 
+}
+
+chk_dups <- function(x){
+  #takes atomic vectors
+  y <- x%>%
+    duplicated()%>%
+    which()
+  return(y)
+  #returns indices, 2nd or higher of repeated values.
+}

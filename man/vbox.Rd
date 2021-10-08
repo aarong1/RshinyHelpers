@@ -21,5 +21,4 @@ builds the div for a simple yet visually effective shiny value box
 }
 \examples{
 vbox()
-
 }

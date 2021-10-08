@@ -24,6 +24,6 @@ Stick this function in a for loop for the range of slider_index arguments
 to make this work
 }
 \examples{
-bootstrap_slider_color()
-_
+library(htmltools)
+#bootstrap_slider_color()
 }

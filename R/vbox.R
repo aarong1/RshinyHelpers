@@ -7,6 +7,7 @@
 #' @return A character vector of the div tree to be rendered in the ui of a  shiny app
 #' @examples
 #' vbox()
+#' @export
 #' 
 vbox <-
   function(label = 'label',

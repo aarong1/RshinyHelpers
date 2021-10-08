@@ -1,16 +1,20 @@
 #' Colors the selected row in a DT within a shiny app.  Call in the ui
-#' 
+#' element of a shiny app
 #' @param colour A character vector of rgb,rgba,colour name
 #' 
-#' @return A character vector of html style containg the televant css
+#' @return A character vector of html style containing the relevant css
 #' @examples
+
 #' DT_selected_row_colour()
 #' DT_selected_row_colour(colour='blue')
-#' _
+#' @export
+
 
 
 DT_selected_row_colour <- function( colour='pink') {
   
-  shiny::tags$style(HTML('table.dataTable tr.selected td, table.dataTable td.selected {background-color: ',colour,' !important;}'))
+  shiny::tags$style(
+    htmltools::HTML('table.dataTable tr.selected td, table.dataTable td.selected {
+                    background-color: ',colour,' !important;}'))
   
 }

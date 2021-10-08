@@ -2,7 +2,8 @@
 % Please edit documentation in R/DT_selected_row_colour.R
 \name{DT_selected_row_colour}
 \alias{DT_selected_row_colour}
-\title{Colors the selected row in a DT within a shiny app.  Call in the ui}
+\title{Colors the selected row in a DT within a shiny app.  Call in the ui
+element of a shiny app}
 \usage{
 DT_selected_row_colour(colour = "pink")
 }
@@ -10,13 +11,15 @@ DT_selected_row_colour(colour = "pink")
 \item{colour}{A character vector of rgb,rgba,colour name}
 }
 \value{
-A character vector of html style containg the televant css
+A character vector of html style containing the relevant css
 }
 \description{
 Colors the selected row in a DT within a shiny app.  Call in the ui
+element of a shiny app
 }
 \examples{
+require(shiny)
+require(htmltools)
 DT_selected_row_colour()
 DT_selected_row_colour(colour='blue')
-_
 }

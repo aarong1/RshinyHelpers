@@ -1,25 +1,28 @@
-rmPWCap <- function(text_to_clean, rm_all_white_space = F) {
-  #' Sterilises strings for matching
+ #' Sterilises strings for matching
   #' 
-  #' @param x A character vector.
+  #' @param text_to_clean A character vector.
+  #' @param rm_all_white_space A boolean indicating whether all (not just trailing and double whitespace)
+  #' should be stripped.
   #' 
   #' @return A character vector \code{x} capitalised and devoid of Punctuation and trailing,  double
   #'  (and, optionally all whitespace)
   #' @examples
   #' rmPWCap(c('He1l0 ! '))
   #' rmPWCap(c('He1l0 ! '),rm_all_white_space=)
-  #' _
+  #' @export
+rmPWCap <- function(text_to_clean, rm_all_white_space = F) {
+ 
   if (rm_all_white_space == F) {
-    y <- text_to_clean %>% 
-      tm::removePunctuation() %>%   #rm P
-      stringr::str_squish() %>%   #removes peripheral Wsp and collapses double wsp
-      toupper() #capitalise
+    
+    y <- tm::removePunctuation(text_to_clean)    #rm P
+    y <- stringr::str_squish(y)    #removes peripheral Wsp and collapses double wsp
+    y <- toupper(y) #capitalise
+    
   } else{
-    y <- text_to_clean %>% 
-      tm::removePunctuation() %>%   #rm P
-      stringr::str_squish() %>% #removes peripheral Wsp and collapses double wsp
-      stringr::str_remove_all(string = ., pattern = ' ') %>%    #removes all whitespace
-      toupper()
+    y <- tm::removePunctuation(text_to_clean)  #rm P
+    y <- stringr::str_squish(y) #removes peripheral Wsp and collapses double wsp
+    y <- stringr::str_remove_all(string = y, pattern = ' ')    #removes all whitespace
+    y <- toupper(y)
   }#capitalise
   return(y)
 }

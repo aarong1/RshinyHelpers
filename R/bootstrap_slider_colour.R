@@ -8,8 +8,8 @@
 #' 
 #' @return A HTML head element incliuding the necessary css.
 #' @examples
-#' bootstrap_slider_color()
-#' _
+
+#' @export
 
 bootstrap_slider_colour <- function(slider_index=0, colour='mediumseagreen') {
   y <- shiny::tags$head(
