@@ -1,3 +1,13 @@
+#' builds the div for a simple yet visually effective shiny value box
+#' 
+#' @param label The label -  character of length one
+#' @param textid The value - A character vector of length one, optionally the textOutput of a reactive value
+#' @param col Bkgrd col- A character of rbg(), rgba(), or a color name to 
+#' 
+#' @return A character vector of the div tree to be rendered in the ui of a  shiny app
+#' @examples
+#' vbox()
+#' 
 vbox <-
   function(label = 'label',
            textid = 'textOutput_here',
