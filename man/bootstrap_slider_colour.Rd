@@ -23,7 +23,3 @@ Note there is currently no solution to change all of them simultaneously
 Stick this function in a for loop for the range of slider_index arguments
 to make this work
 }
-\examples{
-library(htmltools)
-#bootstrap_slider_color()
-}

@@ -18,8 +18,6 @@ Colors the selected row in a DT within a shiny app.  Call in the ui
 element of a shiny app
 }
 \examples{
-require(shiny)
-require(htmltools)
 DT_selected_row_colour()
 DT_selected_row_colour(colour='blue')
 }

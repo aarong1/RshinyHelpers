@@ -9,7 +9,7 @@ rmPWCap(text_to_clean, rm_all_white_space = F)
 \arguments{
 \item{text_to_clean}{A character vector.}
 
-\item{rm_all_white_space}{A bollean indicating whether all (not just trailing and double whitespace)
+\item{rm_all_white_space}{A boolean indicating whether all (not just trailing and double whitespace)
 should be stripped.}
 }
 \value{
