@@ -2,7 +2,7 @@ vbox <-
   function(label = 'label',
            textid = 'textOutput_here',
            col = 'rgba(60,130,180,0.5)') {
-    div(
+    shiny::tags$div(
       style =
         "border-radius: 15px;
                       border-style: solid;
@@ -15,8 +15,8 @@ vbox <-
                   text-align:center;
                   background-color:{col};
             ",
-      h5(label, style = 'color:white;'),
-      h2(style = 'font-weight:bold;display: inline-block;vertical-align:top;color:white;',
+      shiny::tags$h5(label, style = 'color:white;'),
+      shiny::tags$h2(style = 'font-weight:bold;display: inline-block;vertical-align:top;color:white;',
          textid)
     )
   }
