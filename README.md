@@ -1,3 +1,5 @@
+--metadata title="RshinyHelpers docs".
+
 # RshinyHelpers 😙
 
 A small package of utiility functions
@@ -20,7 +22,22 @@ for the latest version
 
 # Shiny
 
+We can change individual slider colours in bootstrap
+![](www/slider.png)
+This applies to the individual slider components. We appy by referenceing the index
+of the bootstrap slider in the order in which they appear in the ui.  See the cods for more on this
 
+We can change the default row selection colour on DataTables from the DT package.
+
+![](www/rows.png)
+
+and have really nice styled and formatted value boxes
+
+![](www/vbox.png)
+
+Making them reactive is easy! As is formatting the colour to suit your dashboard's aesthetics
+![](www/reactive1.png)
+![](www/reactive2.png)
 
 # Text tidying 
 

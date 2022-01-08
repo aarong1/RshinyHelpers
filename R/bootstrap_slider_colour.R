@@ -17,13 +17,13 @@ bootstrap_slider_colour <- function(slider_index=0, colour='mediumseagreen') {
   y <- 
     shiny::tags$head(
     shiny::tags$style(
-      htmltools::HTML('.js-irs-',slider_index,'  .irs-single, .js-irs-',slider_index,' .irs-bar-edge, .js-irs-0 .irs-bar {
+      htmltools::HTML(paste0('.js-irs-',slider_index,'  .irs-single, .js-irs-',slider_index,' .irs-bar-edge, .js-irs-0 .irs-bar {
                                                     background: ',colour,';
                                                     border-top: 1px solid ',colour,' ;
                                                     border-bottom: 1px solid ',colour,' ;}
   
                               /* changes the colour of the number tags */
-                             .irs-from, .irs-to, .irs-single { background: ',colour,' }')))
+                             .irs-from, .irs-to, .irs-single { background: ',colour,' }'))))
   
   return(y)
 }
