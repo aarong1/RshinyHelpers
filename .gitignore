@@ -1,5 +1,10 @@
-.Rproj.user
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
-.Rproj
+.Rprofile
+.Rbuildignore
+.DS_Store
+raw_functions_in_transit/
+testing_functions/
+
