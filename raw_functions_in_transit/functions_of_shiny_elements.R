@@ -72,3 +72,91 @@ chk_dups <- function(x){
   return(y)
   #returns indices, 2nd or higher of repeated values.
 }
+
+
+#pretty printing of lists of many to one relationships
+#best performed after a left_join
+character_list <- function(df, group_by_var, many_mapping_col) {
+  Cclusters1 <- df%>%
+    distinct(group_by_var,many_mapping_col)%>%
+    group_by(group_by_var)%>%
+    mutate(wot=all(is.na(many_mapping_col)))%>%
+    group_by(group_by_var)%>%
+    summarise(ls=list(many_mapping_col),wot)%>%
+    mutate(pretty_col=paste0(ls))%>%
+    mutate(pretty_col=str_replace_all(pretty_col,pattern = '\\(',replacement=''))%>%
+    mutate(pretty_col=str_replace_all(pretty_col,pattern = '\\)',replacement=''))%>%
+    mutate(pretty_col=str_replace_all(pretty_col,pattern = '"',replacement=''))%>%
+    mutate(pretty_col=str_replace_all(pretty_col,pattern = 'c',replacement=''))%>%
+    mutate(pretty_col=ifelse(grepl('NA',pretty_col),NA,pretty_col))%>%
+    distinct()
+}
+
+#nest(data=list(many_mapping_col))
+
+# EmployerClusters <- EmployerClusters%>%
+#   left_join(.,Cclusters1[c('CaseNumber','clusters')])
+
+
+#This generates programmatically the required length of arguments 
+#used primarialy for the tooltips of maps and graphs can repurpose for any
+#many to one relationships
+
+nodes_tot%>%
+  slice_head(n = 50)%>%
+  unite(FirstName,LastName,col='FullName')%>%
+  group_by(Latitude,Longitude)%>%
+  mutate(label=c(FullName))%>%
+  #mutate(label1=list(FullName))%>%
+  mutate(label2=paste(as.vector(label),sep=' ',collapse= '<br>' ))
+# mutate(label3=paste(label,sep=' ',collapse= ''))%>%
+# mutate(label4=paste(as.vector(label1),sep=' ',collapse= ''))%>%
+# mutate(label5=paste(label1,sep=' ',collapse= ''))%>%
+
+
+
+# dedup a table based on the values of two or more fields
+# order does not matter.
+#it does this by creating an additional
+#intermediate field and orders alphabetically
+
+#useful for undirected graph applications. used in covid trnasimssion modelling
+# to quantify the number of 'handshakes' and interactions,
+#between people and between features of people.
+
+x <- edges_tot %>%
+  rowwise()%>%
+  #-----------
+  # important os that the selection is from each ROW and col
+  # and we are not grabbing the entire field
+  #------------
+  mutate(to_from=list(c(to,from)))#%>%View
+# mutate(map_chr(.$to_from,.f = ~order(.x)))
+
+# mutate(map(to_from= order(to_from)))#%>%
+# View
+
+y <-  map(x$to_from,sort)%>% #sort aphabetically
+  as.data.frame()%>% #prep for transpose
+  t()%>% #tranpose
+  as.data.frame() #coerce back to data.frame- doesnt also preserve df
+
+names(y) <- c('to_ordered','from_ordered')
+
+
+orderedxy <- cbind(x,y)%>%
+  rownames_to_column(var='rn')%>%
+  select(-rn)
+
+#we can then get the ordered fields and count them 
+orderedxy <- orderedxy%>%
+  group_by(to_ordered,from_ordered,label)%>%
+  add_count()%>%
+  filter(n>1)%>%
+  select(-c(n,to_ordered,from_ordered,to_from))
+
+
+
+  
+  
+  
