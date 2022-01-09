@@ -9,11 +9,11 @@
   #'  (and, optionally all whitespace)
   #' @examples
   #' rmPWCap(c('He1l0 ! WoR1D'))
-  #' rmPWCap(c('He1l0 ! WoR1D'),rm_all_white_space=T)
+  #' rmPWCap(c('He1l0 ! WoR1D'),rm_all_white_space=TRUE)
   #' @export
 rmPWCap <- function(text_to_clean, rm_all_white_space = F) {
  
-  if (rm_all_white_space == F) {
+  if (rm_all_white_space == FALSE) {
     
     y <- tm::removePunctuation(text_to_clean)    #rm P
     y <- stringr::str_squish(y)    #removes peripheral Wsp and collapses double wsp

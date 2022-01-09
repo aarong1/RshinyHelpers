@@ -102,13 +102,22 @@ character_list <- function(df, group_by_var, many_mapping_col) {
 #used primarialy for the tooltips of maps and graphs can repurpose for any
 #many to one relationships
 
+#----
+#example data 
+nodes_tot=data.frame(
+  FirstName=sample(c('A','B','C'),size = 50,replace=T),
+  LastName=sample(c('1','2','3'),size = 50,replace=T),
+  Latitude=sample(c('D','E','F'),size = 50,replace=T),
+  Longitude=sample(c('4','5','6'),size = 50,replace=T))
+#---------
+
 nodes_tot%>%
-  slice_head(n = 50)%>%
+  #slice_head(n = 50)%>%
   unite(FirstName,LastName,col='FullName')%>%
   group_by(Latitude,Longitude)%>%
   mutate(label=c(FullName))%>%
   #mutate(label1=list(FullName))%>%
-  mutate(label2=paste(as.vector(label),sep=' ',collapse= '<br>' ))
+  mutate(label2=paste(as.vector(label),sep=' ',collapse= '<br>' ))%>%View()
 # mutate(label3=paste(label,sep=' ',collapse= ''))%>%
 # mutate(label4=paste(as.vector(label1),sep=' ',collapse= ''))%>%
 # mutate(label5=paste(label1,sep=' ',collapse= ''))%>%
@@ -123,8 +132,16 @@ nodes_tot%>%
 #useful for undirected graph applications. used in covid trnasimssion modelling
 # to quantify the number of 'handshakes' and interactions,
 #between people and between features of people.
+#-------
+#example data
+edges_tot <- data.frame(
+  to=sample(c('A','B','C','D'),size = 50,replace=T),
+  from=sample(c('A','B','C','D','E','F'),size = 50,replace=T))
 
+count(edges_tot,to,from)
+#-----
 x <- edges_tot %>%
+  #group_by(to,from)%>%
   rowwise()%>%
   #-----------
   # important os that the selection is from each ROW and col
@@ -143,14 +160,13 @@ y <-  map(x$to_from,sort)%>% #sort aphabetically
 
 names(y) <- c('to_ordered','from_ordered')
 
-
 orderedxy <- cbind(x,y)%>%
   rownames_to_column(var='rn')%>%
   select(-rn)
 
 #we can then get the ordered fields and count them 
 orderedxy <- orderedxy%>%
-  group_by(to_ordered,from_ordered,label)%>%
+  group_by(to_ordered,from_ordered)%>%#,label
   add_count()%>%
   filter(n>1)%>%
   select(-c(n,to_ordered,from_ordered,to_from))

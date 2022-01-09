@@ -10,9 +10,7 @@
 #' @examples
 #' bootstrap_slider_colour()
 #' bootstrap_slider_colour(colour='blue')
-
 #' @export
-
 bootstrap_slider_colour <- function(slider_index=0, colour='mediumseagreen') {
   y <- 
     shiny::tags$head(

@@ -1,5 +1,5 @@
---metadata title="RshinyHelpers docs".
-
+<title>"RshinyHelpers docs</title>
+# Rpack <img src='man/figures/logo.png' align="right" height="139" />
 # RshinyHelpers 😙
 
 A small package of utiility functions
@@ -7,7 +7,7 @@ A small package of utiility functions
 ## Intro 👣
 The package is a combination of utility functions for data tidying and data manipulation. That doesn't fit into any really tidy workflow.  For beginners do please see the tdiyverse packages dplyr and tidyr for data mamipulation and reformatting.
 
-This is my first hack at creating an R package and I dont anticipate maintaining or commiting to CRAN. **Nor do I advise using in production for these reasons**  I welcome all feedback!
+This is my first hack at creating an R package and I don't anticipate maintaining or commiting to CRAN. **Nor do I advise using in production for these reasons**  I welcome all feedback!
 
 ## Usage
 
@@ -29,7 +29,7 @@ of the bootstrap slider in the order in which they appear in the ui.  See the co
 
 We can change the default row selection colour on DataTables from the DT package.
 
-![](www/rows.png)
+![](man/figures/rows.png)
 
 and have really nice styled and formatted value boxes
 

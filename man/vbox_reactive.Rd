@@ -2,7 +2,7 @@
 % Please edit documentation in R/vbox.R
 \name{vbox_reactive}
 \alias{vbox_reactive}
-\title{builds the div for a simple yet visually effective shiny value box}
+\title{builds the div for a reactive shiny value box}
 \usage{
 vbox_reactive(
   label = "label",
@@ -22,7 +22,7 @@ if using vbox_reactive}
 A character vector of the div tree to be rendered in the ui of a  shiny app
 }
 \description{
-builds the div for a simple yet visually effective shiny value box
+builds the div for a reactive shiny value box
 }
 \examples{
 vbox_reactive()

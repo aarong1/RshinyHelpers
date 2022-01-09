@@ -4,17 +4,13 @@
 #' 
 #' @return A character vector of html style containing the relevant css
 #' @examples
-
 #' DT_selected_row_colour()
 #' DT_selected_row_colour(colour='blue')
 #' @export
-
-
-
 DT_selected_row_colour <- function( colour='pink') {
   
   shiny::tags$style(
-    htmltools::HTML('table.dataTable tr.selected td, table.dataTable td.selected {
-                    background-color: ',colour,' !important;}'))
+    htmltools::HTML(paste0('table.dataTable tr.selected td, table.dataTable td.selected {
+                    background-color: ',colour,' !important;}')))
   
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmPWCap.R
 \name{rmPWCap}
 \alias{rmPWCap}
-\title{Sterilises strings for matching}
+\title{Sterilises strings, capitalising, removing punct. and spaces. Mostly for matching applications}
 \usage{
 rmPWCap(text_to_clean, rm_all_white_space = F)
 }
@@ -10,16 +10,17 @@ rmPWCap(text_to_clean, rm_all_white_space = F)
 \item{text_to_clean}{A character vector.}
 
 \item{rm_all_white_space}{A boolean indicating whether all (not just trailing and double whitespace)
-should be stripped.}
+should be stripped.  Setting to false obviously preserves semantic meaning, but in eaither instance
+peripherial and sequential white space is always stripped.}
 }
 \value{
 A character vector \code{x} capitalised and devoid of Punctuation and trailing,  double
 (and, optionally all whitespace)
 }
 \description{
-Sterilises strings for matching
+Sterilises strings, capitalising, removing punct. and spaces. Mostly for matching applications
 }
 \examples{
-rmPWCap(c('He1l0 ! '))
-rmPWCap(c('He1l0 ! '),rm_all_white_space=)
+rmPWCap(c('He1l0 ! WoR1D'))
+rmPWCap(c('He1l0 ! WoR1D'),rm_all_white_space=TRUE)
 }
