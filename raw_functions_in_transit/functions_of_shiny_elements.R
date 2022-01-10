@@ -172,6 +172,52 @@ orderedxy <- orderedxy%>%
   select(-c(n,to_ordered,from_ordered,to_from))
 
 
+#-------ggplot themes
+
+library(tidyverse)
+library(plotly)
+
+setcol <- RColorBrewer::brewer.pal(n = 3,'Reds')[2]
+(p <- ggplot(mtcars%>%
+               mutate(cyl=as.factor(cyl)
+                      )
+             )+
+  geom_point(aes(disp,mpg,col=am))+#,fill=setcol
+  labs(title = 'Graph Title',
+       #subtitle= 'Subtitle',
+       # caption = 'caption',
+       # tag = 'tag'
+       )+#coord_cartesian(clip='off')+
+  #facet_wrap(~cyl)+
+  theme(
+        text = element_text(face = 'bold'),#,hjust = 1
+        title = element_text(size = 15,
+                             colour='dimgrey',
+                             # margin = margin(t = 0, r = 0, b = 10, l = 0, 
+                             #                 unit = "pt")
+                             ),
+       
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_text(colour='black',size=8),
+        strip.text = element_text(face = 'bold.italic',size = 12),
+        strip.background=element_rect(colour='grey',fill = 'grey',size = 2),
+        #legend.box.just = 'right',
+        #legend.box = 'horizontal',
+        #legend.direction = 'horizontal',
+        legend.position = 'bottom',
+        legend.key.width = unit(0.1,units='npc'),
+        #legend.box.background = element_blank(),
+        legend.key = element_blank(),
+        #legend.title.align = 1,
+        #legend.background = element_blank(),
+        #legend.box.background = element_blank()
+        
+        )+scale_colour_brewer(palette='Set2',aesthetics=c('fill','colour'))
+    #scale_colour_viridis(discrete = T)
+  )
+
+ggplotly(p)
 
   
   
