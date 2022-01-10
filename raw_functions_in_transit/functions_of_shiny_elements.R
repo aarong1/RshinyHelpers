@@ -178,47 +178,131 @@ library(tidyverse)
 library(plotly)
 
 setcol <- RColorBrewer::brewer.pal(n = 3,'Reds')[2]
-(p <- ggplot(mtcars%>%
-               mutate(cyl=as.factor(cyl)
-                      )
-             )+
-  geom_point(aes(disp,mpg,col=am))+#,fill=setcol
-  labs(title = 'Graph Title',
-       #subtitle= 'Subtitle',
-       # caption = 'caption',
-       # tag = 'tag'
-       )+#coord_cartesian(clip='off')+
-  #facet_wrap(~cyl)+
-  theme(
-        text = element_text(face = 'bold'),#,hjust = 1
-        title = element_text(size = 15,
-                             colour='dimgrey',
-                             # margin = margin(t = 0, r = 0, b = 10, l = 0, 
-                             #                 unit = "pt")
-                             ),
-       
-        panel.background = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_text(colour='black',size=8),
-        strip.text = element_text(face = 'bold.italic',size = 12),
-        strip.background=element_rect(colour='grey',fill = 'grey',size = 2),
-        #legend.box.just = 'right',
-        #legend.box = 'horizontal',
-        #legend.direction = 'horizontal',
-        legend.position = 'bottom',
-        legend.key.width = unit(0.1,units='npc'),
-        #legend.box.background = element_blank(),
-        legend.key = element_blank(),
-        #legend.title.align = 1,
-        #legend.background = element_blank(),
-        #legend.box.background = element_blank()
-        
-        )+scale_colour_brewer(palette='Set2',aesthetics=c('fill','colour'))
-    #scale_colour_viridis(discrete = T)
-  )
+
+produce_plot <- function() {
+  p <- ggplot(mtcars%>%
+                 mutate(am=as.factor(am)
+                        )
+               )+
+    #geom_point(aes(disp,mpg,col=am))+#,fill=setcol
+      geom_bar(aes(am))+
+    labs(title = 'Graph Title',
+         #subtitle= 'Subtitle',
+         # caption = 'caption',
+         # tag = 'tag'
+         )#coord_cartesian(clip='off')+
+    #facet_wrap(~cyl)+
+      invisible(x <- class(p$data[[p$labels$colour]]))
+                p <- p+
+    theme(
+          text = element_text(face = 'bold'),#,hjust = 1
+          title = element_text(size = 15,
+                               colour='dimgrey',
+                               # margin = margin(t = 0, r = 0, b = 10, l = 0, 
+                               #                 unit = "pt")
+                               ),
+          panel.background = element_blank(),
+          axis.ticks = element_blank(),
+          axis.text = element_text(colour='black',size=8),
+          strip.text = element_text(face = 'bold.italic',size = 12),
+          strip.background=element_rect(colour='grey',fill = 'grey',size = 2),
+          #legend.box.just = 'right',
+          #legend.box = 'horizontal',
+          #legend.direction = 'horizontal',
+          legend.position = 'bottom',
+          legend.key.width = unit(0.1,units='npc'),
+          #legend.box.background = element_blank(),
+          legend.key = element_rect(fill=NA),
+          #legend.title.align = 1,
+          #legend.background = element_blank(),
+          #legend.box.background = element_blank()
+          
+          )+
+    
+    if(x=='character'|x=='factor') {
+            scale_colour_brewer(palette='Set2',aesthetics=c('fill','colour'))
+      #scale_colour_viridis(discrete = T)
+    }else {if(is.na(x)){scale_color_manual(values=setcol)}
+        else{scale_colour_viridis(discrete=F)}
+    }
+                
+                return(p)
+}
+  
+x <- class(p$data[[p$labels$colour]])
 
 ggplotly(p)
 
+  #method for discrete variables 
+  ggplot(mtcars%>%
+                 mutate(am=as.factor(am)
+                        )
+               )+
+    #geom_point(aes(disp,mpg,col=am))+#,fill=setcol
+      geom_point(aes(disp,mpg))+
+    labs(title = 'Graph Title',
+         #subtitle= 'Subtitle',
+         # caption = 'caption',
+         # tag = 'tag'
+         )+#facet_wrap(~am)+
+    
+               
+    theme(
+          text = element_text(face = ,hjust = 0),
+          title = element_text(size = 15,
+                               colour='dimgrey',
+                               # margin = margin(t = 0, r = 0, b = 10, l = 0, 
+                               #                 unit = "pt")
+                               ),
+          panel.background = element_blank(),
+          axis.ticks = element_blank(),
+          axis.text = element_text(colour='black',size=8),
+          strip.text = element_text(face = 'bold.italic',size = 12),
+          strip.background=element_rect(colour='grey',fill = 'grey',size = 2),
+          #legend.box.just = 'right',
+          #legend.box = 'horizontal',
+          #legend.direction = 'horizontal',
+          legend.position = 'bottom',
+          legend.key.width = unit(0.1,units='npc'),
+          #legend.box.background = element_blank(),
+          legend.key = element_rect(fill=NA))+
+    scale_color_brewer(palette="Dark2")
   
   
+  ggplot_obj <- ggplot(mtcars%>%
+                 mutate(am=as.factor(am)
+                        )
+               ) +    labs(title = 'Graph Title',
+         #subtitle= 'Subtitle',
+         # caption = 'caption',
+         # tag = 'tag'
+         )+#facet_wrap(~am)+
+    #geom_point(aes(disp,mpg,col=am))+#,fill=setcol
+      geom_point(aes(disp,mpg,col=mpg))
   
+  custom_theme(ggplot_obj = ggplot_obj)
+    # 
+
+    # theme(
+    #       text = element_text(face = ,hjust = 0),
+    #       title = element_text(size = 15,
+    #                            colour='dimgrey',
+    #                            # margin = margin(t = 0, r = 0, b = 10, l = 0, 
+    #                            #                 unit = "pt")
+    #                            ),
+    #       panel.background = element_blank(),
+    #       axis.ticks = element_blank(),
+    #       axis.text = element_text(colour='black',size=8),
+    #       strip.text = element_text(face = 'bold.italic',size = 12),
+    #       strip.background=element_rect(colour='grey',fill = 'grey',size = 2),
+    #       #legend.box.just = 'right',
+    #       #legend.box = 'horizontal',
+    #       #legend.direction = 'horizontal',
+    #       legend.position = 'bottom',
+    #       legend.key.width = unit(0.1,units='npc'),
+    #       #legend.box.background = element_blank(),
+    #       legend.key = element_rect(fill=NA))+
+    # scale_color_gradient(low = 'darkblue',high='darksalmon')
+    # 
+    # 
+    # 
