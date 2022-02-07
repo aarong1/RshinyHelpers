@@ -7,7 +7,7 @@
 #' 
 #' @return A character vector of the div tree to be rendered in the ui of a  shiny app
 #' @examples
-#' vbox()
+#' vbox('Label','£Value')
 #' @export
 vbox <-
   function(label = 'label',
@@ -42,7 +42,7 @@ vbox <-
 #' 
 #' @return A character vector of the div tree to be rendered in the ui of a  shiny app
 #' @examples
-#' vbox_reactive()
+#' vbox_reactive('Label','YourTextOutputIdHere')
 #' 
 #' @export
 vbox_reactive <-
@@ -100,7 +100,8 @@ saveplot <- function(vector=1:10,save_name=NULL) {
 #' 
 #' @return A character vector of the div tree to be rendered in the ui of a shiny app
 #' @examples
-#' vbox_graphic()
+#' vbox_graphic(label = 'label',textid = 'textOutput_here',col = 'rgba(60,130,180,0.5)',
+#' graph_title='nowcast',value=1:10)
 #' @export
 vbox_graphic <-
   function(label = 'label',

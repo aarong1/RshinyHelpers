@@ -77,8 +77,8 @@ chk_dups <- function(x){
 #pretty printing of lists of many to one relationships
 #best performed after a left_join
 character_list <- function(df, group_by_var, many_mapping_col) {
-  Cclusters1 <- df%>%
-    distinct(group_by_var,many_mapping_col)%>%
+  newdf <- df%>%
+    distinct({{group_by_var}},many_mapping_col)%>%
     group_by(group_by_var)%>%
     mutate(wot=all(is.na(many_mapping_col)))%>%
     group_by(group_by_var)%>%
@@ -90,6 +90,8 @@ character_list <- function(df, group_by_var, many_mapping_col) {
     mutate(pretty_col=str_replace_all(pretty_col,pattern = 'c',replacement=''))%>%
     mutate(pretty_col=ifelse(grepl('NA',pretty_col),NA,pretty_col))%>%
     distinct()
+  
+  return(newdf)
 }
 
 #nest(data=list(many_mapping_col))
@@ -304,5 +306,106 @@ ggplotly(p)
     #       legend.key = element_rect(fill=NA))+
     # scale_color_gradient(low = 'darkblue',high='darksalmon')
     # 
-    # 
-    # 
+    
+  rollavg <- function(x, length = 3) {
+    y <- stats::filter(x, rep(1 / length, length), sides = 1)
+    return(y)
+  }
+  
+  geo_read <- function(filename = "LGD_2012.geojson") {
+    #' Paste two items
+  #' 
+  #' @description This function pastes two items
+  #' together.  
+  #'
+  #' By using the description tag you'll notice that I
+  #' can have multiple paragraphs in the description section
+  #' 
+  #' @param x character. The first item to paste
+  #' @param y character. The second item to paste Defaults to "!" but
+  #' "?" would be pretty great too
+  #' @usage mypaste(x, y)
+  #' @return The inputs pasted together as a character string.
+  #' @details The inputs can be anything that can be input into
+  #' the paste function.
+  #' @note And here is a note. Isn't it nice?
+  #' @section I Must Warn You:
+  #' The reference provided is a good read.
+  #' \subsection{Other warning}{
+  #'   It is completely irrelevant to this function though.
+  #' }
+  #' 
+  #' @references Tufte, E. R. (2001). The visual display of 
+  #' quantitative information. Cheshire, Conn: Graphics Press.
+  #' @examples
+  #' mypaste(1, 3)
+  #' mypaste("hey", "you")
+  #' mypaste("single param")
+  #' @export
+  #' @importFrom sf st_read
+  
+    shape <- sf::st_read(filename)
+    return(shape)
+  }
+  
+  x <- sf::st_read('OSNI')
+  
+  ggplot(x)+geom_sf()
+  
+  
+  # time series
+  ts <-  as_date("2021-10-03"):as_date(Sys.Date())
+ ts <- sort(as_date(ts[sample(c(T,F),size = 101,replace = T,prob = c(0.9,0.1))]))
+ 
+  df <- tibble(time=as_date(ts),
+               col1=sample(replace=T,letters[c(1:5)],size=length(ts)),
+               col2=sample(replace=T,1:26,size=length(ts)),
+               )
+  
+  #we want to expand and fill empty occurrances with zero
+  
+  length(ts)*n_distinct(df$col2)
+  
+  time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
+  gp_var <- 2
+  val_var <- 3
+  #new_df <- tibble(time_col=as_date(min(ts):max(ts)))
+         
+  new_df <- expand.grid(as_date(min(ts):max(ts)),df$col1)
+  names(new_df) <- c(time_name,'col1')
+  new_df <- merge(new_df,df[c(time_name,'col1','col2')],all.x=TRUE)
+  new_df$col2[is.na(new_df$col2)] <- 0
+#similar to expand grid - but in expand.grid the 
+#algo does not infer missing dates from the timeseries
+# our function does !!
+  
+  #compare BEFORE and
+  
+  ggplot(df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
+  
+  #... and after
+  
+  ggplot(new_df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
+  
+  
+# functions for formatting numeric types into 
+# character strings
+
+  
+forCur <- function(x){
+   format(round(x,digits = 0),scientific = F,big.mark = ',')
+}
+
+forCurGBP <- function(x){
+   paste('\U00a3',format(round(x,digits = 0),scientific = F,big.mark = ','))
+}
+
+forCurArea <- function(x){
+   paste(format(round(x,digits = 0),scientific = F,big.mark = ','),'m\u00b2')
+}
+
+forCurAreaGBP <- function(x){
+   paste('\U00a3',format(round(x,digits = 0),scientific = F,big.mark = ','),'m\u00b2')
+   
+}
+  

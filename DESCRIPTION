@@ -1,10 +1,10 @@
 Package: RShinyHelpers
-Title: What the Package Does (One Line, Title Case)
+Title: Collection of innovative snippets with no equivalent (imo)
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Aaron", "Gorman", , "gormanaa@tcd.ie", role = c("aut", "cre"),
+          )
+Description: Compiles and streamlines writing shiny and data code
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
