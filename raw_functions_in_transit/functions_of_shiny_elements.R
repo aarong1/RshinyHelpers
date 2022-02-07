@@ -306,6 +306,7 @@ ggplotly(p)
     #       legend.key = element_rect(fill=NA))+
     # scale_color_gradient(low = 'darkblue',high='darksalmon')
     # 
+
     
   rollavg <- function(x, length = 3) {
     y <- stats::filter(x, rep(1 / length, length), sides = 1)
@@ -409,3 +410,6 @@ forCurAreaGBP <- function(x){
    
 }
   
+
+ # https://www.msn.com/en-gb/money/watchlist?id=bvcjvh&cvid=62c3be5076604903bfa9cf481f97a975&ocid=winp1taskbar&duration=1D
+
