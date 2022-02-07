@@ -76,13 +76,13 @@ chk_dups <- function(x){
 
 #pretty printing of lists of many to one relationships
 #best performed after a left_join
-character_list <- function(df, group_by_var, many_mapping_col) {
+collapse_rows <- function(df, group_by_var, many_mapping_col) {
   newdf <- df%>%
-    distinct({{group_by_var}},many_mapping_col)%>%
-    group_by(group_by_var)%>%
-    mutate(wot=all(is.na(many_mapping_col)))%>%
-    group_by(group_by_var)%>%
-    summarise(ls=list(many_mapping_col),wot)%>%
+    distinct({{group_by_var}},{{many_mapping_col}})%>%
+    group_by({{group_by_var}})%>%
+    mutate(wot=all(is.na({{many_mapping_col}})))%>%
+    group_by({{group_by_var}})%>%
+    summarise(ls=list({{many_mapping_col}}),wot)%>%
     mutate(pretty_col=paste0(ls))%>%
     mutate(pretty_col=str_replace_all(pretty_col,pattern = '\\(',replacement=''))%>%
     mutate(pretty_col=str_replace_all(pretty_col,pattern = '\\)',replacement=''))%>%
@@ -112,6 +112,8 @@ nodes_tot=data.frame(
   Latitude=sample(c('D','E','F'),size = 50,replace=T),
   Longitude=sample(c('4','5','6'),size = 50,replace=T))
 #---------
+
+collapse_rows(nodes_tot,FirstName,Longitude)
 
 nodes_tot%>%
   #slice_head(n = 50)%>%

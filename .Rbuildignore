@@ -5,3 +5,6 @@
 docs/
 raw_functions_in_transit/
 testing_functions/
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
