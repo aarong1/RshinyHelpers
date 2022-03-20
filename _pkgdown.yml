@@ -1,6 +1,11 @@
+url: "https://aarong1.github.io/RshinyHelpers/"
+
 template:
   bootstrap: 5
-  bootswatch: cerulean
+  bootswatch: "cerulean"
+  
+development:
+  mode: auto
   
 reference:
 - title: "Time series"
