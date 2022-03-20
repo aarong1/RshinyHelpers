@@ -1,8 +1,8 @@
 url: "https://aarong1.github.io/RshinyHelpers/"
 
 template:
-  bootstrap: 5
-  bootswatch: "cerulean"
+  params:
+    bootswatch: cerulean
   
 development:
   mode: auto

@@ -3,7 +3,7 @@ pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   time: time.html
-last_built: 2022-03-20T16:41Z
+last_built: 2022-03-20T18:46Z
 urls:
   reference: https://aarong1.github.io/RshinyHelpers/reference
   article: https://aarong1.github.io/RshinyHelpers/articles
