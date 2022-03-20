@@ -33,5 +33,6 @@ A character vector of the div tree to be rendered in the ui of a shiny app
 builds the div for a shiny value box with a simple sparklines-like graphic
 }
 \examples{
-vbox_graphic()
+vbox_graphic(label = 'label',textid = 'textOutput_here',col = 'rgba(60,130,180,0.5)',
+graph_title='nowcast',value=1:10)
 }

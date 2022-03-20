@@ -13,16 +13,19 @@ forCur <- function(x){
    format(round(x,digits = 0),scientific = F,big.mark = ',')
 }
 
+#' @inheritParams forCur
 #' @export
 forCurGBP <- function(x){
    paste('\U00a3',format(round(x,digits = 0),scientific = F,big.mark = ','))
 }
 
+#' @inheritParams forCur
 #' @export
 forCurArea <- function(x){
    paste(format(round(x,digits = 0),scientific = F,big.mark = ','),'m\u00b2')
 }
 
+#' @inheritParams forCur
 #' @export
 forCurAreaGBP <- function(x){
    paste('\U00a3',format(round(x,digits = 0),scientific = F,big.mark = ','),'m\u00b2')

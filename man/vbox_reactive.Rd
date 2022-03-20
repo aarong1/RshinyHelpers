@@ -25,6 +25,6 @@ A character vector of the div tree to be rendered in the ui of a  shiny app
 builds the div for a reactive shiny value box
 }
 \examples{
-vbox_reactive()
+vbox_reactive('Label','YourTextOutputIdHere')
 
 }

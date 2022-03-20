@@ -50,7 +50,7 @@ bootstrap_slider_colour <- function(slider_index=0, colour='mediumseagreen') {
 
 DT_selected_row_colour <- function( colour='pink') {
   
-  shiny::tags$style(HTML('table.dataTable tr.selected td, table.dataTable td.selected {background-color: ',colour,' !important;}'))
+shiny::tags$style(HTML('table.dataTable tr.selected td, table.dataTable td.selected {background-color: ',colour,' !important;}'))
 
 }
 
@@ -138,42 +138,46 @@ nodes_tot%>%
 #between people and between features of people.
 #-------
 #example data
-edges_tot <- data.frame(
+edges <- data.frame(
   to=sample(c('A','B','C','D'),size = 50,replace=T),
   from=sample(c('A','B','C','D','E','F'),size = 50,replace=T))
 
-count(edges_tot,to,from)
+count(edges,to,from)
+
 #-----
-x <- edges_tot %>%
-  #group_by(to,from)%>%
-  rowwise()%>%
-  #-----------
-  # important os that the selection is from each ROW and col
-  # and we are not grabbing the entire field
-  #------------
-  mutate(to_from=list(c(to,from)))#%>%View
-# mutate(map_chr(.$to_from,.f = ~order(.x)))
 
-# mutate(map(to_from= order(to_from)))#%>%
-# View
-
-y <-  map(x$to_from,sort)%>% #sort aphabetically
-  as.data.frame()%>% #prep for transpose
-  t()%>% #tranpose
-  as.data.frame() #coerce back to data.frame- doesnt also preserve df
-
-names(y) <- c('to_ordered','from_ordered')
-
-orderedxy <- cbind(x,y)%>%
-  rownames_to_column(var='rn')%>%
-  select(-rn)
-
-#we can then get the ordered fields and count them 
-orderedxy <- orderedxy%>%
-  group_by(to_ordered,from_ordered)%>%#,label
-  add_count()%>%
-  filter(n>1)%>%
-  select(-c(n,to_ordered,from_ordered,to_from))
+similar_permutations <- function(edges, to, from) {
+  
+  x <- edges%>%
+    rowwise()%>%
+    #-----------
+    # important as that the selection is from each ROW and col
+    # and we are not grabbing the entire field
+    #------------
+    mutate(to_from=list(c({{to}},{{from}})))
+  
+  
+  y <-  map(x$to_from,sort)%>% #sort alphabetically
+    as.data.frame()%>% #prep for transpose
+    t()%>% #transpose
+    as.data.frame() #coerce back to data.frame- doesn't also preserve df
+  
+  names(y) <- c('to_ordered','from_ordered')
+  
+  orderedxy <- cbind(x,y)%>%
+    rownames_to_column(var='rn')%>%
+    select(-rn)
+  
+  #we can then get the ordered fields and count them 
+  orderedxy <- orderedxy%>%
+    group_by(to_ordered,from_ordered)%>%#,label
+    add_count()%>%
+    filter(n>1)%>%
+    ungroup()%>%
+    select(-c(n,to_ordered,from_ordered,to_from))
+  
+  return(orderedxy)
+}
 
 
 #-------ggplot themes
@@ -311,6 +315,7 @@ ggplotly(p)
 
     
   rollavg <- function(x, length = 3) {
+    
     y <- stats::filter(x, rep(1 / length, length), sides = 1)
     return(y)
   }
@@ -357,10 +362,14 @@ ggplotly(p)
   
   
   # time series
-  ts <-  as_date("2021-10-03"):as_date(Sys.Date())
- ts <- sort(as_date(ts[sample(c(T,F),size = 101,replace = T,prob = c(0.9,0.1))]))
+  ts <-  as.Date("2022-01-03"):as.Date(Sys.Date())
+  ts <- sort(
+    as.Date(
+      ts[sample(c(T,F),size = 101,replace = T,prob = c(0.7,0.3))],
+      origin='1970-01-01')
+    )
  
-  df <- tibble(time=as_date(ts),
+  df <- tibble::tibble(time=as.Date(ts),
                col1=sample(replace=T,letters[c(1:5)],size=length(ts)),
                col2=sample(replace=T,1:26,size=length(ts)),
                )
@@ -372,24 +381,51 @@ ggplotly(p)
   time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
   gp_var <- 2
   val_var <- 3
-  #new_df <- tibble(time_col=as_date(min(ts):max(ts)))
-         
-  new_df <- expand.grid(as_date(min(ts):max(ts)),df$col1)
-  names(new_df) <- c(time_name,'col1')
-  new_df <- merge(new_df,df[c(time_name,'col1','col2')],all.x=TRUE)
-  new_df$col2[is.na(new_df$col2)] <- 0
+  #new_df <- tibble(time_col=as.Date(min(ts):max(ts)))
+  
+  complete_time <- function(df) {
+    time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
+
+    new_df <- as.data.frame(as.Date(min(df[[time_name]]):max(df[[time_name]]),origin='1970-01-01'))
+    names(new_df) <- c(time_name)
+    new_df <- merge(new_df,df[c(time_name,'col1','col2')],all.x=TRUE)
+    new_df$col2[is.na(new_df$col2)] <- 0
+    new_df$col2[is.na(new_df$col1)] <- 0
+
+    return(new_df)
+  }
+  
+  complete_time_factors <- function(df) {
+    time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
+
+    new_df <- expand.grid(as.Date(min(df[[time_name]]):max(df[[time_name]]),origin='1970-01-01'),unique(df$col1))
+    names(new_df) <- c(time_name,'col1')
+    new_df <- merge(new_df,dplyr::distinct(df[c(time_name,'col1','col2')]),all.x=TRUE)
+    new_df$col2[is.na(new_df$col2)] <- 0
+    return(new_df)
+  }
+  
+  new_df <- complete_time_factors(df)
+  #new_df <- complete_time(df)
 #similar to expand grid - but in expand.grid the 
 #algo does not infer missing dates from the timeseries
 # our function does !!
   
+  df%>%
+    count(time,wt=col2)%>%
+    mutate(n-lag(n,1))%>%head(10)
+  
+  new_df%>%
+    count(time,wt=col2)%>%
+    mutate(n-lag(n,1))%>%head(10)
+  
   #compare BEFORE and
   
-  ggplot(df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
+  ggplot2::ggplot(df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
   
   #... and after
   
-  ggplot(new_df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
-  
+  ggplot2::ggplot(new_df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
   
 # functions for formatting numeric types into 
 # character strings

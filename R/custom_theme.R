@@ -1,20 +1,21 @@
 #' Themes a ggplot object
-#' @param ggplot A ggplot object
+
 #' @return A themed *ggplot* object
 #' @examples
-#' ggplot_obj <- mtcars%>%
-#'               mutate(am=as.factor(am))%>%
-#'               ggplot( ) + 
-#'      facet_wrap(~am)+
-#'      labs(title = 'Graph Title')+
-#'      geom_point(aes(disp,mpg,col=mpg))+
-#'      custom_theme
+#'# if(!require(dplyr)){library(dplyr)}
+#' #if(!require(ggplot2)){library(ggplot2)}
+#' 
+#' mtcars <- dplyr::mutate(mtcars,am=as.factor(am))
+#' ggplot_obj <-
+#'      ggplot2::ggplot( mtcars) + 
+#'      ggplot2::facet_wrap(~am)+
+#'      ggplot2::labs(title = 'Graph Title')+
+#'      ggplot2::geom_point(ggplot2::aes(disp,mpg,col=mpg))
 #'      
-# custom_theme(ggplot_obj = ggplot_obj)
-#
+#' ggplot_obj + custom_theme()
+#'
 #' @import ggplot2
 #' @export
-#' 
 custom_theme <- ggplot2::theme(
     text = ggplot2::element_text(face = , hjust = 0),
     title = ggplot2::element_text(size = 15,
@@ -24,9 +25,9 @@ custom_theme <- ggplot2::theme(
     axis.text = ggplot2::element_text(colour = 'black', size = 8),
     strip.text = ggplot2::element_text(face = 'bold.italic', size = 12),
     strip.background = ggplot2::element_rect(
-      colour = 'grey',
-      fill = 'grey',
-      size = 2
+      colour = 'black',
+      fill = 'white',
+      size = 1
     ),
     legend.position = 'bottom',
     legend.key.width = unit(0.1, units = 'npc'),

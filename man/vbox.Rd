@@ -21,5 +21,5 @@ A character vector of the div tree to be rendered in the ui of a  shiny app
 builds the div for a simple yet visually effective shiny value box
 }
 \examples{
-vbox()
+vbox('Label','£Value')
 }

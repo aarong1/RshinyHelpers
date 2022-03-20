@@ -10,6 +10,8 @@
   #' @examples
   #' rmPWCap(c('He1l0 ! WoR1D'))
   #' rmPWCap(c('He1l0 ! WoR1D'),rm_all_white_space=TRUE)
+  #' 
+  #' @import tm
   #' @export
 rmPWCap <- function(text_to_clean, rm_all_white_space = F) {
  
