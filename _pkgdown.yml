@@ -1,0 +1,31 @@
+template:
+  bootstrap: 5
+  bootswatch: cerulean
+  
+reference:
+- title: "Time series"
+  desc: >
+    Functions for taming and improving traditional data manipulation
+    methods on time series
+  contents: 
+    - starts_with('complete')
+- title: "Tidying and Exploring data"
+  desc: "Functions for exploring and fixing as well as formatting"
+  contents:
+    - starts_with("chk")
+    - starts_with("collapse")
+    - matches("saveload")
+    - starts_with('for')
+    - rmPWCap
+    - similar_permutations
+- title: "Shiny"
+  desc: "Functions for rendering custom html and css."
+  contents:
+    - starts_with("DT")
+    - starts_with("bootstrap")
+    - contains("value")
+    - contains("vbox")
+- title: "ggplot"
+  desc: "Functions for improving graph layout commensurate with grammar of graphics principles"
+  contents:
+    - custom_theme

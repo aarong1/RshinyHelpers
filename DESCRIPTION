@@ -1,21 +1,27 @@
 Package: RShinyHelpers
-Title: Collection of innovative snippets with no equivalent (imo).
+Title: Collection of innovative snippets with no equivalent (imo)
 Version: 0.0.0.9000
 Authors@R: 
-    person("Aaron", "Gorman", , "gormanaa@tcd.ie", role = c("aut", "cre"))
-Description: Compiles and streamlines writing shiny and data manip.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Aaron", "Gorman",,"gormanaa@tcd.ie", role = c("aut", "cre"))
+Description: Compiles and streamlines writing shiny and data manipulation.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
 Imports: 
     dplyr,
     ggplot2,
     purrr,
-    shiny,
-    sparklines,
     tibble,
     tidyr,
-    tm
+    shiny,
+    sparklines,
+    tm,
+    htmltools,
+    stringr
+VignetteBuilder: knitr

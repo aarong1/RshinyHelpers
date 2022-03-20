@@ -10,10 +10,19 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/time.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
     <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/DT_hover_row_colour.html</loc>
   </url>
   <url>
     <loc>/reference/DT_selected_row_colour.html</loc>
@@ -28,13 +37,31 @@
     <loc>/reference/chk_nas.html</loc>
   </url>
   <url>
+    <loc>/reference/collapse_rows.html</loc>
+  </url>
+  <url>
+    <loc>/reference/complete_time.html</loc>
+  </url>
+  <url>
     <loc>/reference/custom_theme.html</loc>
+  </url>
+  <url>
+    <loc>/reference/finance_vbox.html</loc>
+  </url>
+  <url>
+    <loc>/reference/forCur.html</loc>
+  </url>
+  <url>
+    <loc>/reference/four_value.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
     <loc>/reference/rmPWCap.html</loc>
+  </url>
+  <url>
+    <loc>/reference/similar_permutations.html</loc>
   </url>
   <url>
     <loc>/reference/vbox.html</loc>

@@ -6,6 +6,8 @@
 #' @examples
 #' DT_selected_row_colour()
 #' DT_selected_row_colour(colour='blue')
+#' @import htmltools
+#' @import shiny
 #' @export
 DT_selected_row_colour <- function( colour='pink') {
   

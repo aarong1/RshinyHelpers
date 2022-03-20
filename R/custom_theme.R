@@ -16,7 +16,7 @@
 #'
 #' @import ggplot2
 #' @export
-custom_theme <- ggplot2::theme(
+custom_theme <- function(){ggplot2::theme(
     text = ggplot2::element_text(face = , hjust = 0),
     title = ggplot2::element_text(size = 15,
                                   colour = 'dimgrey'),
@@ -33,5 +33,5 @@ custom_theme <- ggplot2::theme(
     legend.key.width = unit(0.1, units = 'npc'),
     
     legend.key = ggplot2::element_rect(fill = NA)
-  )
+  )}
 

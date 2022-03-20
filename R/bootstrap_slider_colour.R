@@ -10,6 +10,8 @@
 #' @examples
 #' bootstrap_slider_colour()
 #' bootstrap_slider_colour(colour='blue')
+#' @import htmltools
+#' @import shiny
 #' @export
 bootstrap_slider_colour <- function(slider_index=0, colour='mediumseagreen') {
   y <- 

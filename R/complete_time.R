@@ -2,21 +2,24 @@
 #' algo does not infer missing dates from the timeseries
 #'  our function does !!
 #' @param df The dataframe or tibble to operate on
-#' @param value The value - A character vector of length four
-#' @return A tagList of the div tree to be rendered in the ui of a  shiny app
+#' @return An expanded data.frame of all time, and optionally all factor permutations
 #' @examples
+#' 
+#' require(ggplot2)
+#' require(tibble)
+#' require(dplyr)
 #' 
 #'# time series
 #'  ts <-  as.Date("2022-01-03"):as.Date(Sys.Date())
 #'  ts <- sort(
 #'    as.Date(
-#'      ts[sample(c(T,F),size = 101,replace = T,prob = c(0.7,0.3))],
+#'      ts[sample(c(TRUE,FALSE),size = 101,replace = TRUE,prob = c(0.7,0.3))],
 #'      origin='1970-01-01')
 #'    )
 #' 
 #'  df <- tibble::tibble(time=as.Date(ts),
-#'               col1=sample(replace=T,letters[c(1:5)],size=length(ts)),
-#'               col2=sample(replace=T,1:26,size=length(ts)),
+#'               col1=sample(replace=TRUE,letters[c(1:5)],size=length(ts)),
+#'               col2=sample(replace=TRUE,1:26,size=length(ts)),
 #'               )
 #'
 #'  time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
@@ -29,23 +32,29 @@
 #'# our function does !!
 #'  
 #'  df%>%
-#'    count(time,wt=col2)%>%
-#'    mutate(n-lag(n,1))%>%head(10)
+#'    dplyr::count(time,wt=col2)%>%
+#'    dplyr::mutate(n-lag(n,1))%>%head(10)
 #'  
 #'  new_df%>%
-#'    count(time,wt=col2)%>%
-#'    mutate(n-lag(n,1))%>%head(10)
+#'    dplyr::count(time,wt=col2)%>%
+#'    dplyr::mutate(n-lag(n,1))%>%head(10)
 #'  
 #'  #compare BEFORE and
 #'  
-#'  ggplot2::ggplot(df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
+#'  ggplot2::ggplot(df)+
+#'  ggplot2::geom_line(ggplot2::aes(time,col2,col=col1))+
+#'  ggplot2::facet_wrap(~col1)+
+#'  ggplot2::theme_minimal()
 #'  
 #'  #... and after
 #'  
-#'  ggplot2::ggplot(new_df)+geom_line(aes(time,col2,col=col1))+facet_wrap(~col1)+theme_minimal()
+#'  ggplot2::ggplot(new_df)+
+#'  ggplot2::geom_line(ggplot2::aes(time,col2,col=col1))+
+#'  ggplot2::facet_wrap(~col1)+
+#'  ggplot2::theme_minimal()
 #' 
 #'
-#' @import shiny
+#' @import dplyr
 #' @export
 complete_time <- function(df) {
     time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
@@ -59,6 +68,8 @@ complete_time <- function(df) {
     return(new_df)
 }
 
+#' @describeIn complete_time Apply every combination of variable factors for complete time series.
+#' @inheritParams complete_time
 #' @export
 complete_time_factors <- function(df) {
     time_name <- sapply(df,class)[sapply(df,class)=='Date']%>%names()
