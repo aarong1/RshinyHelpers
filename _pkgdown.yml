@@ -1,9 +1,12 @@
-url: "https://aarong1.github.io/RshinyHelpers/"
-
+url: https://aarong1.github.io/RshinyHelpers/
 template:
   params:
+    ganalytics: G-LNWVYVP4P2
     bootswatch: cerulean
-  
+    bslib:
+      pkgdown-nav-height: 60px
+      
+
 development:
   mode: auto
   

@@ -8,5 +8,6 @@ testing_functions/
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-^www$
+www/
+^hexSticker\.R$
 

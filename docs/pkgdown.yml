@@ -1,9 +1,10 @@
 pandoc: 2.17.1.1
-pkgdown: 2.0.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
+  Shiny: Shiny.html
   time: time.html
-last_built: 2022-03-20T18:46Z
+last_built: 2022-03-21T10:11Z
 urls:
   reference: https://aarong1.github.io/RshinyHelpers/reference
   article: https://aarong1.github.io/RshinyHelpers/articles

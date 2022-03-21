@@ -16,14 +16,17 @@ DT_selected_row_colour <- function( colour='pink') {
     htmltools::HTML(paste0('table.dataTable tr.selected td, table.dataTable td.selected {
                     background-color: ',colour,' !important;}'))),
   
-  shiny::tags$style(
-      htmltools::HTML(paste0(
-        ".dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing,.dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
-            color: ",colour," !important;
-        }"
-      )
-    )
-  )
+    htmltools::HTML(paste0('table.dataTable tr.active td, table.dataTable td.active {
+                    background-color: ',colour,' !important;}'))
+  
+  #shiny::tags$style(
+  #    htmltools::HTML(paste0(
+  #      ".dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing,.dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  #          color: ",colour," !important;
+  #      }"
+  #    )
+  #  )
+  #)
   )
   
 }

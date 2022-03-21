@@ -48,8 +48,17 @@ bootstrap_slider_colour <- function(slider_index=0, colour='mediumseagreen') {
 
 }
 
+ #shiny::tags$style(
+  #    htmltools::HTML(paste0(
+  #      ".dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing,.dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  #          color: ",colour," !important;
+  #      }"
+  #    )
+  #  )
+  #)
+
 DT_selected_row_colour <- function( colour='pink') {
-  
+
 shiny::tags$style(HTML('table.dataTable tr.selected td, table.dataTable td.selected {background-color: ',colour,' !important;}'))
 
 }
