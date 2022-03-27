@@ -6,7 +6,5 @@
 .Rbuildignore
 .DS_Store
 raw_functions_in_transit/
-testing_functions/
+testing_function/
 
-docs
-inst/doc

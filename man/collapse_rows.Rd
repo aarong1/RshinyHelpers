@@ -21,19 +21,9 @@ This function folds values of a many to one relationship together in a
 single character composed of comma separated values.
 }
 \details{
-The inputs can be anything that casn be input into
+The inputs can be anything that can be input into
 the paste function.
 }
-\note{
-ensure the total values to fold are sufficiently low tp preserve the pretty print aesthetic
-}
-\section{experimant first if it helps}{
-
-\subsection{not well supported }{
-on multiple data types
-}
-}
-
 \examples{
 
 #example data 

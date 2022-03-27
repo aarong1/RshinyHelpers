@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Shiny: Shiny.html
   time: time.html
-last_built: 2022-03-27T00:08Z
+last_built: 2022-03-27T00:27Z
 urls:
   reference: https://aarong1.github.io/RshinyHelpers/reference
   article: https://aarong1.github.io/RshinyHelpers/articles
