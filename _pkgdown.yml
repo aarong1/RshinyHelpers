@@ -29,6 +29,7 @@ reference:
 - title: "Shiny"
   desc: "Functions for rendering custom html and css."
   contents:
+    - contains('demoApp')
     - starts_with("DT")
     - starts_with("bootstrap")
     - contains("value")

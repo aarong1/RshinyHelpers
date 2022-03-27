@@ -2,7 +2,7 @@
 % Please edit documentation in R/collapse_rows.R
 \name{collapse_rows}
 \alias{collapse_rows}
-\title{collapse row values from a table into a list for pretty printing}
+\title{Collapse row values from a table into a list for pretty printing}
 \usage{
 collapse_rows(df, group_by_var, many_mapping_col)
 }
@@ -17,7 +17,7 @@ collapse_rows(df, group_by_var, many_mapping_col)
 The inputs pasted together as a character string.
 }
 \description{
-TThis function folds values of a many to one relationship together in a
+This function folds values of a many to one relationship together in a
 single character composed of comma separated values.
 }
 \details{

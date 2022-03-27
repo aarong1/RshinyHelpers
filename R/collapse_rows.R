@@ -1,19 +1,15 @@
-  #' collapse row values from a table into a list for pretty printing
+  #' Collapse row values from a table into a list for pretty printing
   #' 
-  #' @description TThis function folds values of a many to one relationship together in a
+  #' @description This function folds values of a many to one relationship together in a
   #' single character composed of comma separated values.
   #'
   #' @param df dataframe, tibble, The data structure to work on
   #' @param group_by_var tidy-eval, character The variable to group by
   #' @param many_mapping_col The column of values that will collapse into a list.
   #' @return The inputs pasted together as a character string.
-  #' @details The inputs can be anything that casn be input into
+  #' @details The inputs can be anything that can be input into
   #' the paste function.
-  #' @note ensure the total values to fold are sufficiently low tp preserve the pretty print aesthetic
-  #' @section experimant first if it helps:
-  #' \subsection{not well supported }{
-  #'   on multiple data types
-  #' }
+  #
  
   #' @examples
   #' 

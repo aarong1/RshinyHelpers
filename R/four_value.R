@@ -16,7 +16,7 @@ four_value <- function(text,value) {
     shiny::div(
     style = 'text-align:center;font-family:sans-serif;',
     
-    shiny::fillRow(height = 50,
+    shiny::fillRow(height = 90,
       shiny::div(
         class = 'hovernow click',
         style = 'border-style:solid;

@@ -1,6 +1,6 @@
 #' Changes bootstrap slider input color individually.
-#' Note there is currently no solution to change all of them simultaneously
-#' Stick this function in a for loop for the range of slider_index arguments
+#' @description Note there is currently no solution to change all of them simultaneously
+#' Put this function in a for loop for the range of slider_index arguments
 #' to make this work
 #' 
 #' @param slider_index A numeric of length one 

@@ -90,10 +90,22 @@ RshinyHelpers
 <!---[![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/ramnathv/test9/workflows/R-CMD-check/badge.svg)](https://github.com/ramnathv/test9/actions)
-
-<img align ='right' src='logo.png'></img>
 -->
-<p>A small package of utility functions for various applications</p>
+<p><img align="right" style="width:200px;padding:50px;" src="./reference/figures/logo.png"></p>
+<p>A small package of utility functions for various applications
+including</p>
+<ul>
+<li>Time Series</li>
+<li>RShiny</li>
+<li>Regex</li>
+<li>Common patterns in handling unordered relations in Data Frames</li>
+<li>Data quality checking and QA</li>
+</ul>
+<p>The package, despite covering multiple operations and bases is named
+‘RShinyHelpers’, mostly because it started out as a Shiny package, but
+also in recognition that most projects aspire to a functioning Shiny app
+at their end. Shiny is an accessible and highly effective tool to
+communicate, and these functions support the end product.</p>
 <div class="section level2">
 <h2 id="intro-">Intro 👣<a class="anchor" aria-label="anchor" href="#intro-"></a>
 </h2>
@@ -101,9 +113,9 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 and data manipulation that don’t fit into any tidy workflow. For
 beginners do please see the tidyverse packages dplyr and tidyr for data
 manipulation and reformatting.</p>
-<p>This is my first hack at creating an R package and I don’t anticipate
-maintaining or committing to CRAN. <strong>Nor do I advise using in
-production for these reasons.</strong> I welcome all feedback!</p>
+<p>A first hack at compiling useful functionality that I could not see
+elsewhere in the open source community. <strong>I do not advise using in
+a production environment.</strong> ALL feedback welcome.</p>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -117,75 +129,63 @@ production for these reasons.</strong> I welcome all feedback!</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="load">Load<a class="anchor" aria-label="anchor" href="#load"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Rpack</span><span class="op">)</span>
-<span class="co">## basic example code</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># load the package into the namespace</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">RShinyHelpers</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="shiny">Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
-</h1>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
+<p>See some of the features displayed in a visually striking shiny
+application. Run by loading the package and running
+<code><a href="reference/demoApp.html">demoApp()</a></code></p>
+</div>
+<div class="section level2">
+<h2 id="shiny">Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
+</h2>
 <div class="section level3">
-<h3 id="we-can-change-individual-slider-colours-in-bootstrap">We can change individual slider colours in bootstrap<a class="anchor" aria-label="anchor" href="#we-can-change-individual-slider-colours-in-bootstrap"></a>
+<h3 id="sliderinput">SliderInput<a class="anchor" aria-label="anchor" href="#sliderinput"></a>
 </h3>
-<p><img src="reference/figures/slider.png"></p>
+<p>We can change individual slider colours in bootstrap <img src="reference/figures/slider.png"></p>
+<p>This function applies to the <em>individual</em> slider components.
+We apply by referencing the index of the bootstrap slider in the order
+in which they appear in the ui. See the docs for more on this</p>
 </div>
 <div class="section level3">
-<h3 id="this-applies-to-the-individual-slider-components-we-appy-by-referenceing-the-index-of-the-bootstrap-slider-in-the-order-in-which-they-appear-in-the-ui-see-the-docs-for-more-on-this">This applies to the individual slider components. We appy by
-referenceing the index of the bootstrap slider in the order in which
-they appear in the ui. See the docs for more on this<a class="anchor" aria-label="anchor" href="#this-applies-to-the-individual-slider-components-we-appy-by-referenceing-the-index-of-the-bootstrap-slider-in-the-order-in-which-they-appear-in-the-ui-see-the-docs-for-more-on-this"></a>
+<h3 id="dt">DT<a class="anchor" aria-label="anchor" href="#dt"></a>
 </h3>
-</div>
-<div class="section level3">
-<h3 id="we-can-change-the-default-row-selection-colour-on-datatables-from-the-dt-package">We can change the default row selection colour on DataTables from
-the DT package.<a class="anchor" aria-label="anchor" href="#we-can-change-the-default-row-selection-colour-on-datatables-from-the-dt-package"></a>
-</h3>
+<p>We can change the default row <strong>selection colour</strong> on
+DataTables from the DT package.</p>
 <p><img src="reference/figures/rows.png"></p>
-</div>
-<div class="section level3">
-<h3 id="and-have-really-nice-styled-and-formatted-value-boxes">and have really nice styled and formatted value boxes<a class="anchor" aria-label="anchor" href="#and-have-really-nice-styled-and-formatted-value-boxes"></a>
-</h3>
+<p>and we have really nice styled and formatted <strong>value
+boxes</strong>. Surprising hard to come by given the maturity of shiny
+as a dashboarding tool.</p>
 <p><img src="reference/figures/vbox.png"></p>
-</div>
-<div class="section level3">
-<h3 id="making-them-reactive-is-easy-as-is-formatting-the-colour-to-suit-your-dashboards-aesthetics">Making them reactive is easy! As is formatting the colour to suit
-your dashboard’s aesthetics<a class="anchor" aria-label="anchor" href="#making-them-reactive-is-easy-as-is-formatting-the-colour-to-suit-your-dashboards-aesthetics"></a>
-</h3>
+<p>Making the boxes’ values <strong>reactive is easy!</strong> As is
+formatting the <strong>colour</strong> to suit your dashboard’s
+aesthetics</p>
 <p><img src="reference/figures/reactive1.png"><img src="reference/figures/reactive2.png"></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="text-tidying">Text tidying<a class="anchor" aria-label="anchor" href="#text-tidying"></a>
-</h1>
-<p><code>rmPWCap(c('He1l0 ! W0rId'),rm_all_white_space = F)</code></p>
-<blockquote>
-<p>[1] “HE1L0 W0RID”</p>
-</blockquote>
-<p><code>rmPWCap(c('He1l0 ! W0rId'),rm_all_white_space = T)</code></p>
-<blockquote>
-<p>[1] “HE1L0W0RID”</p>
-</blockquote>
+<div class="section level2">
+<h2 id="text-tidying">Text tidying<a class="anchor" aria-label="anchor" href="#text-tidying"></a>
+</h2>
+<p><code>rmPWCap(c('He1l0 ! W0rId'),rm_all_white_space = F)</code>
+<code>#&gt; "HE1L0 W0RID"</code></p>
+<p><code>rmPWCap(c('He1l0 ! W0rId'),rm_all_white_space = T)</code>
+<code>#&gt; "HE1L0W0RID"</code></p>
+</div>
 <div class="section level2">
 <h2 id="error-finding">Error finding<a class="anchor" aria-label="anchor" href="#error-finding"></a>
 </h2>
 <p><code><a href="reference/chk_nas.html">chk_nas()</a></code></p>
-<div class="section level3">
-<h3 id="simply-wraps">simply wraps<a class="anchor" aria-label="anchor" href="#simply-wraps"></a>
-</h3>
+<p>simply wraps</p>
 <p><code>which(is.na(data.frame))</code></p>
-<div class="section level4">
-<h4 id="where-as">where as<a class="anchor" aria-label="anchor" href="#where-as"></a>
-</h4>
-<p><code><a href="reference/chk_dups.html">chk_dups()</a></code></p>
-</div>
-</div>
-<div class="section level3">
-<h3 id="simply-wraps-which-entries-in-a-dataframe-is-duplicated">simply wraps which entries in a dataframe is duplicated<a class="anchor" aria-label="anchor" href="#simply-wraps-which-entries-in-a-dataframe-is-duplicated"></a>
-</h3>
+<p>where as <code><a href="reference/chk_dups.html">chk_dups()</a></code></p>
+<p>simply wraps which entries in a dataframe is duplicated</p>
 <p><code>which(duplicated(data.frame))</code></p>
-</div>
-</div>
 </div>
 
   </div>

@@ -1,8 +1,4 @@
-
-#' Changes bootstrap slider input color individually.
-#' Note there is currently no solution to change all of them simultaneously
-#' Stick this function in a for loop for the range of slider_index arguments
-#' to make this work
+#' A more complex value box for displaying multiple related metrics in finance
 #' 
 #' @param toplot A numeric vector for the sparklines 
 #' @param col A character of length one that takes names, rgb or rgba character vectors of the box background
@@ -21,14 +17,14 @@ finance_vbox <-
            col = 'rgba(0,0,0,0.6)') {#'rgba(60,130,180,0.5)'
     
     first_value <- toplot[1]
-    print(first_value)
+    #print(first_value)
     
     last_value <- toplot[length(toplot)]
-    print(last_value)
-    change <- -1*(first_value-last_value)
-    print(change)
-    perc_change <- paste(-1*(first_value-last_value)/first_value*100,'%')
-    print(perc_change)
+    #print(last_value)
+    change <- round(-1*(first_value-last_value),2)
+    #print(change)
+    perc_change <- paste(round(-1*(first_value-last_value)/first_value*100,2),'%')
+    #print(perc_change)
     
       shiny::div(style='background-color:white;text-color:white;color:white;','hello')
     shiny::tags$div(
@@ -37,7 +33,7 @@ finance_vbox <-
             border-style :solid;
             border-color:transparent;
             border-radius:25px;
-            margin: 20px;
+            margin: 0px;
             width:200px;
             color:black;
             line-height:8px;
@@ -48,11 +44,14 @@ finance_vbox <-
                   font-family:helvetica;
                   background-color:",col,";"),
       shiny::tags$h6(label, style = 'padding:0px,;margin:0px;color:white;'),
-      shiny::icon('sort-down',
+      div(style='display:inline-block;vertical-align:top;',
+      
+        shiny::tags$h4(style = 'display:inline-block;vertical-align:bottom;color:white;float:middle;',
+                       shiny::icon(ifelse(change<0,'arrow-down','arrow-up'),
            lib='font-awesome',
-           style=paste0('font-size:20px;padding:0px;display:inline;color:',ifelse(change<0,'#f3172d;','lightgreen'))),
-        shiny::tags$h4(style = 'line-height:3px;display: inline-block;vertical-align:top;color:white;float:middle;',#font-weight:bold;
-         textid),br(),br(),
+           style=paste0('font-size:20px;padding:0px;display:inline-block;vertical-align:bottom;color:',
+                        ifelse(change<0,'#f3172d;','lightgreen;'))),
+         textid)),br(),br(),
 
       shiny::span(class=ifelse(change<0,'badge badge-danger','badge badge-success'),
            change,
@@ -62,7 +61,7 @@ finance_vbox <-
            perc_change,style='color:white;font-weight:bold;padding:5px;margin:5px;'),#float:right;
       
       shiny::fillRow(height='10px'),#hr(),
-      sparklines::sparkline(toplot,width='100%', "line",
+      sparklines::sparkline(round(toplot,2),width='100%', "line",
                 list(fillColor='white',#NA
                      spotColor='white',
                      lineColor='white',

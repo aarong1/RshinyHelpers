@@ -17,7 +17,7 @@ vbox <-
       style =paste0(
         "border-radius: 15px;
                       border-style: solid;
-                      border-color:white;
+                      border-color:transparent;
             padding:0px;
             margin:0px 10px;
             width:200px;
@@ -53,7 +53,7 @@ vbox_reactive <-
       style =paste0(
         "border-radius: 15px;
                       border-style: solid;
-                      border-color:white;
+                      border-color:transparent;
             padding:0px;
             margin:0px 10px;
             width:200px;
@@ -116,7 +116,7 @@ vbox_graphic <-
       style =
         paste0("border-radius: 15px;
                       border-style: solid;
-                      border-color:white;
+                      border-color:transparent;
             padding:0px 0px 0px 10px;
             margin:0px 0px 0px 10px;
             color:white;
@@ -125,7 +125,7 @@ vbox_graphic <-
                   font-weight: 300;
                   text-color:blue;
                   text-align:left;
-                  background-color:",'darksalmon',";
+                  background-color:",col,";
             "),
       shiny::fillRow(shiny::tags$div(
       shiny::tags$h5(label, style = 'color:white;'),
@@ -135,3 +135,4 @@ vbox_graphic <-
       shiny::tags$img(src=paste0('plot_value_',label,'.png'),height=70,style='float:right;padding:5px;margin:5px;')))
     )
   }
+

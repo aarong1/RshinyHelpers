@@ -2,10 +2,7 @@
 % Please edit documentation in R/finance_value.R
 \name{finance_vbox}
 \alias{finance_vbox}
-\title{Changes bootstrap slider input color individually.
-Note there is currently no solution to change all of them simultaneously
-Stick this function in a for loop for the range of slider_index arguments
-to make this work}
+\title{A more complex value box for displaying multiple related metrics in finance}
 \usage{
 finance_vbox(
   toplot = c(1, 2, 19, 20, 90, 100, 50, 200),
@@ -27,10 +24,7 @@ finance_vbox(
 A tagList of the div tree to be rendered to the shiny ui
 }
 \description{
-Changes bootstrap slider input color individually.
-Note there is currently no solution to change all of them simultaneously
-Stick this function in a for loop for the range of slider_index arguments
-to make this work
+A more complex value box for displaying multiple related metrics in finance
 }
 \examples{
 finance_vbox(label = 'Important metric',textid = '$463')

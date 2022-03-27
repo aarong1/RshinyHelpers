@@ -2,10 +2,7 @@
 % Please edit documentation in R/bootstrap_slider_colour.R
 \name{bootstrap_slider_colour}
 \alias{bootstrap_slider_colour}
-\title{Changes bootstrap slider input color individually.
-Note there is currently no solution to change all of them simultaneously
-Stick this function in a for loop for the range of slider_index arguments
-to make this work}
+\title{Changes bootstrap slider input color individually.}
 \usage{
 bootstrap_slider_colour(slider_index = 0, colour = "mediumseagreen")
 }
@@ -18,9 +15,8 @@ bootstrap_slider_colour(slider_index = 0, colour = "mediumseagreen")
 A HTML head element incliuding the necessary css.
 }
 \description{
-Changes bootstrap slider input color individually.
 Note there is currently no solution to change all of them simultaneously
-Stick this function in a for loop for the range of slider_index arguments
+Put this function in a for loop for the range of slider_index arguments
 to make this work
 }
 \examples{

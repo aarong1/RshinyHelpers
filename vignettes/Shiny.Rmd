@@ -1,0 +1,91 @@
+---
+title: "Shiny"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Shiny}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning=FALSE,
+  message=FALSE
+)
+```
+
+### Load the package 
+
+```{r setup, include=FALSE}
+
+devtools::load_all()
+#library(RShinyHelpers)
+
+```
+
+```{r setupshow, include=TRUE}
+library(RShinyHelpers)
+
+```
+
+Call the Example Shiny app to demonstrate the shiny functionality using `demoApp()`
+
+## Here we demonstrate the **value/info** boxes 
+
+```{r finance, include=TRUE, echo= TRUE }
+
+finance_vbox(toplot = -(1:10+runif(n=10,min=-1,max=1)),label = 'market index',textid = '£1M',col = 'black')
+
+
+```
+
+
+
+```{r vbox 1}
+
+vbox(label = 'label',textid = 'value')
+
+```
+
+
+
+```{r 4vbox}
+
+four_value(c('BCT','ETH','KLM','DOGE'),c('$4.00','£5.34','€7.47','£9.68'))
+
+```
+
+
+## SliderInput colour
+
+We style the sliderInput with `bootstrap_slider_colour(slider_index = 0,colour = 'mediumseagreen')`
+
+
+## DT 
+
+To improve the aesthetics of the wildly popular and infinitely functional `DT::Datatables()`, based on the _jquery_ library of the same name, we implement some improved primary colouring.  
+Note these functions now support manipulation of both bootstrap 3, using shiny's default, and bs4 datatables, if using bslib.
+
+We set the hover colour _pink_ and selected colour _red_, with the supplementary text surrounding the bulk content, to a fun pinky-red _#ff003b_.
+
+``` {r echo=FALSE, include=TRUE}
+
+#ui <- fluidPage(theme=bslib::bs_theme(),
+   
+    ##call inside the ui declaration 
+
+    DT_selected_row_colour(colour = 'red')
+    DT_hover_row_colour(colour = 'pink')
+    DT_peripheral_colour(colour = '#ff003b')
+# ,..
+
+```
+
+```{r DT, include=TRUE }
+
+DT::datatable(mtcars[1:5],selection = TRUE)
+
+
+```
+
