@@ -9,8 +9,6 @@
   #' @return The inputs pasted together as a character string.
   #' @details The inputs can be anything that can be input into
   #' the paste function.
-  #
- 
   #' @examples
   #' 
   #'#example data 
